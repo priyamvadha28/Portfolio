@@ -38,3 +38,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Toggle Read More for Certifications Section
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("toggleCerts");
+    const hiddenLeft = document.querySelector(".hidden-left");
+    const hiddenRight = document.querySelector(".hidden-right");
+
+    if (toggleBtn && hiddenLeft && hiddenRight) {
+        toggleBtn.addEventListener("click", () => {
+            // hiddenLeft.classList.toggle("hidden-certs");
+            // hiddenRight.classList.toggle("hidden-certs");
+            hiddenLeft.classList.toggle("show");
+            hiddenRight.classList.toggle("show");
+            toggleBtn.textContent =
+                toggleBtn.textContent === "Read More" ? "Show Less" : "Read More";
+        });
+    } else {
+        console.warn("Read More toggle elements not found.");
+    }
+});
+
+// Accordion behavior for hackathon cards
+document.addEventListener("DOMContentLoaded", () => {
+  const eventPanels = document.querySelectorAll('.event-panel');
+
+  eventPanels.forEach(panel => {
+    panel.addEventListener('click', () => {
+      eventPanels.forEach(p => p.classList.remove('active'));
+      panel.classList.add('active');
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  // Load saved theme preference
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    toggleBtn.textContent = "☀️";
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+
+    if (body.classList.contains("dark-mode")) {
+      toggleBtn.textContent = "☀️";
+      localStorage.setItem("theme", "dark");
+    } else {
+      toggleBtn.textContent = "🌙";
+      localStorage.setItem("theme", "light");
+    }
+  });
+});
