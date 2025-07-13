@@ -406,14 +406,15 @@ span {
 
 .skills-container {
     display: flex;
-    flex-direction: column; /* Add this line to stack items vertically */
-    gap: 5rem; /* Adjust the gap between the bar and circular skills */
-    padding: 3rem;
-    align-items: stretch; /* Make the bar and circular skills take full width */
+    flex-direction: column;
+    gap: 8rem;
+    padding: 3rem 6rem; /* 6rem left and right padding */
+    align-items: stretch;
 }
 
 .bar-skills {
-    flex: 1; /* Take up available space */
+    flex: 1; 
+    padding: 0 4rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Force three equal columns */
     gap: 2rem;
@@ -430,32 +431,42 @@ span {
     margin-bottom: 0.8rem; /* Increased margin below skill name */
     font-size: 1.8rem; /* Larger skill name font size */
 }
-
 .progress-bar {
-    background-color: #f0f0f0;
-    border-radius: 1.0rem;
-    height: 2rem;
-    width: 100%;
-    position: relative;
-    display: flex; /* To align text inside */
-    align-items: center;
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 1rem;
+  height: 2rem;
+  width: 100%;
+  overflow: hidden;
 }
 
-.progress-bar div {
-    background-color: var(--main-color);
-    height: 100%;
-    border-radius: 0.5rem;
-    width: 0%; /* Initialize width to be controlled inline */
+.progress-bar .fill-bar {
+  height: 100%;
+  width: 0; /* animated from 0 to desired percent */
+  background-color: var(--main-color); /* overwritten by JS per skill */
+  border-radius: 1rem;
+  transition: width 2s ease;
+  z-index: 1;
+  position: relative;
 }
 
-.progress-bar span { /* Style for the percentage text */
-    position: absolute;
-    top: 50%;
-    right: 0.8rem; /* Adjust distance from the right end */
-    transform: translateY(-50%); /* Vertically center the text */
-    color: var(--text-color); /* Use your text color */
-    font-size: 1.4rem;
-    font-weight: bold;
+.progress-bar span {
+  position: absolute;
+  top: 50%;
+  left: 0.8rem;
+  transform: translateY(-50%);
+  color: var(--text-color);
+  font-size: 1.4rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.skill-divider {
+  border: none;
+  height: 2px;
+  background-color: var(--main-color);
+  margin: 4rem 0;
+  opacity: 0    ;
 }
 
 .circular-skills {
@@ -474,14 +485,20 @@ span {
 
 .circle-progress {
     position: relative;
-    width: 120px; /* Adjust size */
-    height: 120px; /* Adjust size */
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    background: conic-gradient(var(--main-color) 0%, var(--main-color) var(--percent), #f0f0f0 var(--percent), #f0f0f0 100%); /* Dynamic gradient */
+    background: conic-gradient(
+        var(--main-color) 0%, 
+        var(--main-color) var(--percent), 
+        #f0f0f0 var(--percent), 
+        #f0f0f0 100%
+    );
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
+    transition: background 1.5s ease-in-out;
 }
 
 .circle-progress::before {
@@ -582,7 +599,7 @@ span {
     
     .contact .heading {
         text-align: center;
-        color: black;
+        color: var(--text-color);
     }
 
     .contact .heading span {
@@ -807,6 +824,7 @@ span {
   font-size: 5rem;
   text-align: center;
   margin-bottom: 5rem;
+  color: var(--text-color); /* ensures heading works in dark mode too */
 }
 
 .timeline-lead-container {
@@ -885,6 +903,24 @@ span {
 .timeline-content p {
   font-size: 1.4rem;
   color: var(--text-color);
+}
+
+/* 🌙 Dark Mode Support */
+body.dark-mode .leadership-timeline {
+  background: #111; /* darken background for the entire section */
+}
+
+body.dark-mode .timeline-content {
+  background: #1f1f1f;
+  box-shadow: 0 0.5rem 1rem rgba(255,255,255,0.05);
+}
+
+body.dark-mode .timeline-content h4 {
+  color: #ccc;
+}
+
+body.dark-mode .leadership-timeline .heading {
+  color: #fff;
 }
 
 /* Responsive for Leadership Timeline */
@@ -991,91 +1027,154 @@ span {
   }
 }
 
-/* Hackathons Section */
-.event-container {
-  display: flex;
-  width: 100%;
-  gap: 1rem;
-  margin-top: 4rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+/* Hackathons & Expos Section */
+.hackathons {
+  background: var(--snd-bg-color);
+  padding: 10rem 9% 5rem;
 }
 
-.event-panel {
-  flex: 0.5;
-  height: 60vh;
-  border-radius: 20px;
-  color: #fff;
+.hackathons .heading {
+  font-size: 5rem;
+  margin-bottom: 5rem;
+  color: var(--text-color);
+}
+
+.hackathon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+  padding: 0 2rem;
+}
+
+.hackathon-item {
+  background: var(--bg-color);
   padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+}
+
+.hackathon-item:hover {
+  transform: translateY(-5px);
+}
+
+.hackathon-item h3 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.hackathon-item p {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.hackathon-result {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: var(--main-color);
+}
+
+.hackathon-result.winner,
+.hackathon-result.semi-finalist,
+.hackathon-result.finalist {
+  color: var(--main-color);
+}
+
+.hackathon-item .btn {
+  margin-top: 1rem;
+}
+
+/* Gallery Section */
+
+.carousel-gallery {
+  background: var(--snd-bg-color);
+  padding: 10rem 9% 5rem;
+  text-align: center;
+}
+
+.carousel-gallery .heading {
+  margin-bottom: 5rem;
+}
+
+.carousel {
   position: relative;
-  cursor: pointer;
-  transition: all 0.5s ease-in-out;
-  background-size: cover;
-  background-position: center;
-  scroll-snap-align: start;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  transition: transform 0.5s ease-in-out;
 }
 
-.event-panel h3 {
-  font-size: 1.6rem;
-  margin: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.2s;
+.carousel-slide {
+  min-width: 100%;
+  transition: opacity 0.5s ease-in-out;
+  position: relative;
 }
 
-.event-panel p {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.3s;
+.carousel-slide img {
+  max-height: 350px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
-.event-panel.active {
-  flex: 5;
+.carousel-slide p {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-color);
 }
 
-.event-panel.active h3,
-.event-panel.active p {
-  opacity: 1;
+.carousel-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--main-color); /* or your chosen color */
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Custom background gradients for each panel */
-#sih {
-  background: linear-gradient(135deg, #2f80ed, #56ccf2);
+.carousel-btn:hover {
+  transform: scale(1.1);
+  background-color: #005f5a; /* slightly darker on hover */
 }
 
-#hackit {
-  background: linear-gradient(135deg, #27ae60, #2ecc71);
+.carousel-btn.prev {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
-#amazon {
-  background: linear-gradient(135deg, #f39c12, #f1c40f);
-}
-
-#tancam {
-  background: linear-gradient(135deg, #9b59b6, #8e44ad);
-}
-
-#nmtncpl {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-}
-
-/* Mobile friendly adjustments */
-@media (max-width: 768px) {
-  .event-container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .event-panel {
-    flex: 1 !important;
-    height: auto;
-  }
-
-  .event-panel h3,
-  .event-panel p {
-    opacity: 1 !important;
-  }
+.carousel-btn.next {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  z-index: 10;
 }
