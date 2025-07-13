@@ -177,6 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(() => {
       currentIndex = (currentIndex + 1) % slides.length;
       updateSlidePosition();
-    }, 2000);
+    }, 5000);
   }
 })
