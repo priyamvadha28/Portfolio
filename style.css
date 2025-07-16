@@ -391,158 +391,235 @@ span {
         }
     }
 
-    /* Skills Section Code */
+/* --- Skills Section Styling --- */
 
 .skills {
-    padding: 9rem 0;
-    background: var(--bg-color);
-    color: var(--text-color);
-    text-align: center;
+  padding: 9rem 0;
+  background: var(--snd-bg-color);
+  color: var(--text-color);
+  text-align: center;
 }
 
 .skills h2 {
-    margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
-.skills-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8rem;
-    padding: 3rem 6rem; /* 6rem left and right padding */
-    align-items: stretch;
+.skills-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax for slightly smaller items */
+  gap: 25px; /* Slightly reduced gap */
+  padding: 0 15px; /* Slightly reduced padding */
+  max-width: 1100px; /* Slightly reduced max width */
+  margin: 0 auto 50px auto; /* Adjusted margin */
+  justify-content: center;
+  align-items: stretch;
 }
 
-.bar-skills {
-    flex: 1; 
-    padding: 0 4rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Force three equal columns */
-    gap: 2rem;
+/* Styling for individual linear skill items */
+.skill-item {
+  background-color: var(--bg-color);
+  padding: 20px; /* Reduced padding */
+  border-radius: 8px; /* Slightly less rounded */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Slightly smaller shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--snd-bg-color);
 }
 
-.skill {
-    padding: 1rem 0;
-    text-align: left;
+.skill-item:hover {
+  transform: translateY(-5px); /* Reduced lift effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* Adjusted shadow on hover */
+  border-color: var(--main-color);
 }
 
-.skill span {
-    display: block;
-    font-weight: 600; /* Slightly bolder skill names */
-    margin-bottom: 0.8rem; /* Increased margin below skill name */
-    font-size: 1.8rem; /* Larger skill name font size */
+.skill-item span:first-child {
+  font-size: 1.8rem; /* Reduced font size */
+  font-weight: 700;
+  margin-bottom: 12px; /* Reduced margin */
+  color: var(--text-color);
 }
+
+/* Progress bar styling */
 .progress-bar {
-  position: relative;
-  background-color: #f0f0f0;
-  border-radius: 1rem;
-  height: 2rem;
   width: 100%;
+  height: 20px; /* Reduced height */
+  background-color: var(--snd-bg-color);
+  border-radius: 10px; /* Slightly less rounded */
   overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08); /* Adjusted inner shadow */
 }
 
 .progress-bar .fill-bar {
   height: 100%;
-  width: 0; /* animated from 0 to desired percent */
-  background-color: var(--main-color); /* overwritten by JS per skill */
-  border-radius: 1rem;
-  transition: width 2s ease;
-  z-index: 1;
-  position: relative;
+  width: 0;
+  border-radius: 10px;
+  transition: width 1.5s ease-out;
+  background-color: var(--main-color);
 }
 
 .progress-bar span {
   position: absolute;
+  right: 10px; /* Adjusted position */
   top: 50%;
-  left: 0.8rem;
   transform: translateY(-50%);
-  color: var(--text-color);
-  font-size: 1.4rem;
+  color: white;
+  font-size: 1.3rem; /* Reduced font size */
   font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Adjusted shadow */
   z-index: 2;
 }
 
-.skill-divider {
-  border: none;
-  height: 2px;
-  background-color: var(--main-color);
-  margin: 4rem 0;
-  opacity: 0    ;
-}
-
-.circular-skills {
-    flex: 1; /* Take up available space */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive circular skills */
-    gap: 2rem;
-    text-align: center;
+/* Container for the circular skills */
+.circular-skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Adjusted minmax for smaller items */
+  gap: 30px; /* Slightly reduced gap */
+  padding: 0 15px;
+  max-width: 900px; /* Slightly reduced max width */
+  margin: 0 auto;
+  justify-content: center;
+  align-items: start;
 }
 
 .circular-skill {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px; /* Reduced padding */
+  background-color: var(--bg-color);
+  border-radius: 12px; /* Slightly less rounded */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Adjusted shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--snd-bg-color);
 }
 
+.circular-skill:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  border-color: var(--main-color);
+}
+
+/* Basic styles for circular progress */
 .circle-progress {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: conic-gradient(
-        var(--main-color) 0%, 
-        var(--main-color) var(--percent), 
-        #f0f0f0 var(--percent), 
-        #f0f0f0 100%
-    );
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-    transition: background 1.5s ease-in-out;
-}
-
-.circle-progress::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 20px); /* Inner white circle size */
-    height: calc(100% - 20px); /* Inner white circle size */
-    background-color: var(--bg-color); /* Match your background */
-    border-radius: 50%;
+  position: relative;
+  width: 110px; /* Reduced width */
+  height: 110px; /* Reduced height */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: conic-gradient(var(--main-color) 0%, var(--snd-bg-color) 0%);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.08); /* Adjusted inner shadow */
 }
 
 .inner-circle {
-    position: relative;
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--bg-color);
+  width: 90px; /* Reduced width */
+  height: 90px; /* Reduced height */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem; /* Reduced font size */
+  font-weight: bold;
+  color: var(--text-color);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.08) inset; /* Adjusted shadow */
 }
 
 .percent {
-    font-size: 1.8rem; /* Adjust percentage text size */
-    font-weight: bold;
-    color: var(--text-color);
+  position: relative;
+}
+
+.percent::after {
+  content: '%';
+  font-size: 0.7em;
+  margin-left: 1px; /* Adjusted margin */
 }
 
 .circular-skill span {
-    font-size: 1.4rem; /* Adjust skill name size */
-    color: var(--text-color);
+  margin-top: 15px; /* Adjusted margin */
+  font-size: 1.6rem; /* Reduced font size */
+  font-weight: 600;
+  color: var(--text-color);
 }
 
-/* Responsive Adjustments */
+/* Responsive Adjustments for Skills Section */
 @media (max-width: 768px) {
-    .skills-container {
-        flex-direction: column; /* Stack bar and circular skills */
-    }
+  .skills-grid-container {
+      grid-template-columns: 1fr;
+      padding: 0 10px; /* Further reduced padding for mobile */
+  }
 
-    .bar-skills {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
-    }
+  .circular-skills-container {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Further reduced minmax for mobile */
+      gap: 15px; /* Further reduced gap for mobile */
+      padding: 0 10px;
+  }
+
+  .skill-item {
+      padding: 15px; /* Further reduced padding */
+  }
+
+  .skill-item span:first-child {
+      font-size: 1.6rem; /* Further reduced font size */
+  }
+
+  .progress-bar {
+      height: 18px; /* Further reduced height */
+  }
+
+  .progress-bar span {
+      font-size: 1.2rem; /* Further reduced font size */
+  }
+
+  .circle-progress {
+      width: 90px; /* Further reduced width */
+      height: 90px; /* Further reduced height */
+  }
+
+  .inner-circle {
+      width: 70px; /* Further reduced width */
+      height: 70px; /* Further reduced height */
+      font-size: 1.4rem; /* Further reduced font size */
+  }
+
+  .circular-skill span {
+      font-size: 1.4rem; /* Further reduced font size */
+  }
+}
+
+/* Ensure these are using your theme variables correctly */
+body.dark-mode .skill-item,
+body.dark-mode .circular-skill {
+  background-color: var(--bg-color);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.04); /* Adjusted shadow for dark mode */
+  border-color: var(--snd-bg-color);
+}
+
+body.dark-mode .skill-item:hover,
+body.dark-mode .circular-skill:hover {
+  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.08); /* Adjusted shadow for dark mode */
+}
+
+body.dark-mode .progress-bar {
+  background-color: var(--snd-bg-color);
+}
+
+body.dark-mode .progress-bar span {
+  color: var(--text-color);
+}
+
+body.dark-mode .inner-circle {
+  background-color: var(--bg-color);
+}
+
+body.dark-mode .circle-progress {
+  background: conic-gradient(var(--main-color) var(--percent), var(--snd-bg-color) var(--percent), var(--snd-bg-color) 100%);
 }
 
     /* Project Section Code */
