@@ -48,11 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
         progressBars.forEach(bar => {
             const fill = bar.querySelector(".fill-bar");
             const percent = bar.getAttribute("data-percent");
-            const color = bar.getAttribute("data-color") || "#007f73";
             const percentTextSpan = bar.querySelector("span");
 
             if (fill) {
-                fill.style.backgroundColor = color;
+                const mainColor = getComputedStyle(document.body).getPropertyValue('--main-color').trim();
+                console.log("Current --main-color:", mainColor);
+                fill.style.backgroundColor = mainColor;
                 fill.style.width = percent + "%";
             }
             if (percentTextSpan) percentTextSpan.textContent = percent + "%";
@@ -157,7 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 themeToggle.textContent = "🌙";
                 localStorage.setItem("theme", "light");
             }
-        });
+            animateBars(); 
+    });
     }
 
     // Gallery Carousel
