@@ -1,4 +1,4 @@
-# 💻 Priyamvadha's Personal Portfolio
+# 💻 My Personal Portfolio
 
 Welcome to my personal portfolio website!  
 This site showcases my projects, skills, leadership roles, hackathons, certifications, and more.
@@ -14,7 +14,7 @@ This site showcases my projects, skills, leadership roles, hackathons, certifica
 - Certifications and courses timeline
 - Leadership and hackathon sections
 - Projects with descriptions
-- Contact form (non-functional placeholder)
+- Contact form
 
 ## 🚀 Deployment
 
