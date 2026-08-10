@@ -2687,14 +2687,14 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   position: relative;
   z-index: 1;
 
-  width: 62px;
-  height: 62px;
-  flex: 0 0 62px;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 50px;
 
   display: grid;
   place-items: center;
 
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 
   border: 1px solid rgba(169, 139, 255, .58);
   border-radius: 50%;
@@ -2709,9 +2709,9 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
       transparent 70%
     );
 
-  box-shadow: 0 0 22px rgba(169, 139, 255, .07);
+  box-shadow: 0 0 18px rgba(169, 139, 255, .07);
 
-  font-size: 1.55rem;
+  font-size: 1.05rem;
 }
 
 
