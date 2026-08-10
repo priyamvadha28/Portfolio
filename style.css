@@ -2687,31 +2687,26 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   position: relative;
   z-index: 1;
 
-  width: 40px;
-  height: 40px;
-  flex: 0 0 50px;
+  width: auto;
+  height: auto;
+  flex: 0 0 auto;
 
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
 
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 
-  border: 1px solid rgba(169, 139, 255, .58);
-  border-radius: 50%;
+  border: none;
+  border-radius: 0;
 
   color: var(--accent);
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(169, 139, 255, .12),
-      rgba(169, 139, 255, .025) 65%,
-      transparent 70%
-    );
+  background: none;
+  box-shadow: none;
 
-  box-shadow: 0 0 18px rgba(169, 139, 255, .07);
-
-  font-size: 1.05rem;
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 
