@@ -1,199 +1,147 @@
-function debounce(func, delay) {
-    let timeout;
-    return function (...args) {
-        const context = this;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(context, args), delay);
-    };
+const body = document.body;
+const menuToggle = document.getElementById("menu-toggle");
+const navbar = document.getElementById("navbar");
+
+
+menuToggle.addEventListener("click", () => {
+  navbar.classList.toggle("open");
+});
+
+document.querySelectorAll(".navbar a").forEach(link => {
+  link.addEventListener("click", () => navbar.classList.remove("open"));
+});
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealItems.forEach(item => observer.observe(item));
+} else {
+  revealItems.forEach(item => item.classList.add("visible"));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Navbar Menu Toggle
-    const menu = document.querySelector('#menu-icon');
-    const navbar = document.querySelector('.navbar');
+document.getElementById("year").textContent = new Date().getFullYear();
 
-    menu.onclick = () => {
-        menu.classList.toggle('bx-x');
-        navbar.classList.toggle('active');
-    };
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll(".navbar a");
 
-    window.onscroll = () => {
-        menu.classList.remove('bx-x');
-        navbar.classList.remove('active');
-    };
+window.addEventListener("scroll", () => {
+  let current = "";
 
-    // Typed Text Animation
-    const typed = new Typed('.multiple-text', {
-        strings: ['AI/ML Enthusiast', 'Data Science Explorer', 'Python Developer', 'Web Designer'],
-        typeSpeed: 50,
-        backSpeed: 50,
-        backDelay: 1000,
-        loop: true,
-    });
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) current = section.id;
+  });
 
-    // Progress Bars (Bar Skills)
-    const skillSection = document.querySelector(".skills");
-    const progressBars = document.querySelectorAll(".skill-item .progress-bar");
-
-    const resetBars = () => {
-        progressBars.forEach(bar => {
-            const fill = bar.querySelector(".fill-bar");
-            const percentTextSpan = bar.querySelector("span");
-            if (fill) fill.style.width = "0%";
-            if (percentTextSpan) percentTextSpan.textContent = "0%";
-        });
-    };
-
-    const animateBars = () => {
-        progressBars.forEach(bar => {
-            const fill = bar.querySelector(".fill-bar");
-            const percent = bar.getAttribute("data-percent");
-            const percentTextSpan = bar.querySelector("span");
-
-            if (fill) {
-                const mainColor = getComputedStyle(document.body).getPropertyValue('--main-color').trim();
-                console.log("Current --main-color:", mainColor);
-                fill.style.backgroundColor = mainColor;
-                fill.style.width = percent + "%";
-            }
-            if (percentTextSpan) percentTextSpan.textContent = percent + "%";
-        });
-    };
-
-    const barObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                resetBars();
-                setTimeout(animateBars, 100);
-            } else {
-                resetBars();
-            }
-        });
-    }, { threshold: 0.5 });
-
-    if (skillSection) barObserver.observe(skillSection);
-
-    // Circular Skills Animation
-    const circularSection = document.querySelector(".circular-skills-container");
-    const circularProgress = document.querySelectorAll('.circle-progress');
-
-    const resetCircularProgress = () => {
-        circularProgress.forEach(circle => {
-            circle.style.setProperty('--percent', `0%`);
-            const percentText = circle.querySelector(".percent");
-            if (percentText) percentText.textContent = "0";
-        });
-    };
-
-    const animateCircularProgress = () => {
-        circularProgress.forEach(circle => {
-            const value = parseInt(circle.dataset.percent);
-            let current = 0;
-            const percentText = circle.querySelector(".percent");
-
-            const interval = setInterval(() => {
-                if (current >= value) {
-                    clearInterval(interval);
-                    return;
-                }
-                current++;
-                circle.style.setProperty('--percent', `${current}%`);
-                if (percentText) percentText.textContent = `${current}`;
-            }, 10);
-        });
-    };
-
-    const circularObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                resetCircularProgress();
-                setTimeout(animateCircularProgress, 100);
-            } else {
-                resetCircularProgress();
-            }
-        });
-    }, { threshold: 0.5 });
-
-    if (circularSection) circularObserver.observe(circularSection);
-
-    // Read More for Certifications
-    const toggleBtn = document.getElementById("toggleCerts");
-    const hiddenLeft = document.querySelector(".hidden-left");
-    const hiddenRight = document.querySelector(".hidden-right");
-
-    if (toggleBtn && hiddenLeft && hiddenRight) {
-        toggleBtn.addEventListener("click", () => {
-            hiddenLeft.classList.toggle("show");
-            hiddenRight.classList.toggle("show");
-            toggleBtn.textContent = toggleBtn.textContent === "Read More" ? "Show Less" : "Read More";
-        });
-    }
-
-    // Hackathons Read More (Ensure HTML is updated for this)
-    const hackathonToggle = document.getElementById("toggleHackathons");
-    if (hackathonToggle) {
-        hackathonToggle.addEventListener("click", function () {
-            const hidden = document.querySelectorAll(".hidden-hackathons");
-            hidden.forEach(el => el.classList.toggle("show"));
-            this.textContent = this.textContent === "Read More" ? "Show Less" : "Read More";
-        });
-    }
-
-    // Dark Mode Toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    const body = document.body;
-
-    if (localStorage.getItem("theme") === "dark") {
-        body.classList.add("dark-mode");
-        themeToggle.textContent = "☀️";
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-            if (body.classList.contains("dark-mode")) {
-                themeToggle.textContent = "☀️";
-                localStorage.setItem("theme", "dark");
-            } else {
-                themeToggle.textContent = "🌙";
-                localStorage.setItem("theme", "light");
-            }
-            animateBars(); 
-    });
-    }
-
-    // Gallery Carousel
-    const track = document.querySelector(".carousel-track");
-    const nextBtn = document.querySelector(".carousel-btn.next");
-    const prevBtn = document.querySelector(".carousel-btn.prev");
-
-    if (track && nextBtn && prevBtn) {
-        const slides = Array.from(track.children);
-        let currentIndex = 0;
-
-        function updateSlidePosition() {
-            const slideWidth = slides[0].getBoundingClientRect().width;
-            track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-        }
-
-        window.addEventListener("resize", debounce(updateSlidePosition, 250));
-
-        nextBtn.addEventListener("click", () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSlidePosition();
-        });
-
-        prevBtn.addEventListener("click", () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlidePosition();
-        });
-
-        updateSlidePosition(); // Run once on load
-
-        // Autoplay every 5 seconds (as per your current code)
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSlidePosition();
-        }, 5000);
-    }
+  navLinks.forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${current}`
+    );
+  });
 });
+
+
+// Continuous skill marquees: one row moves left, the other moves right.
+// Items are recycled in-place so there is no pause, reverse, or visible reset.
+function initSkillMarquees() {
+  const marquees = document.querySelectorAll(".marquee-track");
+  const states = [];
+
+  marquees.forEach(track => {
+    const container = track.closest(".skill-marquee");
+    const direction = track.classList.contains("track-left") ? -1 : 1;
+    states.push({ track, container, direction, offset: 0, last: performance.now() });
+  });
+
+  function measureAndPosition(state) {
+    const { track, container, direction } = state;
+    if (direction === -1) {
+      state.offset = 0;
+    } else {
+      const available = container.clientWidth;
+      const width = track.scrollWidth;
+      state.offset = Math.min(0, available - width);
+    }
+    track.style.transform = `translate3d(${state.offset}px, 0, 0)`;
+  }
+
+  states.forEach(measureAndPosition);
+
+  function animate(now) {
+    states.forEach(state => {
+      const { track, container, direction } = state;
+      const delta = Math.min((now - state.last) / 1000, 0.05);
+      state.last = now;
+      state.offset += direction * 48 * delta;
+
+      if (direction === -1) {
+        const first = track.firstElementChild;
+        if (first) {
+          const distance = first.getBoundingClientRect().width + 14;
+          if (-state.offset >= distance) {
+            track.appendChild(first);
+            state.offset += distance;
+          }
+        }
+      } else {
+        const last = track.lastElementChild;
+        if (last && state.offset >= 0) {
+          const distance = last.getBoundingClientRect().width + 14;
+          track.insertBefore(last, track.firstElementChild);
+          state.offset -= distance;
+        }
+      }
+
+      track.style.transform = `translate3d(${state.offset}px, 0, 0)`;
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+
+  window.addEventListener("resize", () => {
+    states.forEach(state => {
+      state.last = performance.now();
+      measureAndPosition(state);
+    });
+  });
+}
+
+initSkillMarquees();
+
+// Hero code visual: subtly moves through the system's context -> reasoning -> actions -> feedback loop.
+function initHeroSystemVisual() {
+  const visual = document.querySelector('.hero-code-card');
+  if (!visual) return;
+
+  const stages = ['context', 'reasoning', 'actions', 'feedback'];
+  const lines = [...visual.querySelectorAll('.stage-line')];
+  const chips = [...document.querySelectorAll('.floating-chip[data-chip]')];
+  let index = 0;
+
+  function activateStage(stage) {
+    lines.forEach(line => line.classList.toggle('is-active', line.dataset.stage === stage));
+    chips.forEach(chip => chip.classList.toggle('is-active', chip.dataset.chip === stage));
+  }
+
+  activateStage(stages[index]);
+  window.setInterval(() => {
+    index = (index + 1) % stages.length;
+    activateStage(stages[index]);
+  }, 1800);
+}
+
+initHeroSystemVisual();
