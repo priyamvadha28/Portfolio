@@ -1862,90 +1862,47 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
 }
 
 /* Hero system visual — intentional architecture labels and running code state */
-
 .hero-code-card {
   width: min(100%, 560px);
   transform: rotate(-1.2deg);
 }
-
 .hero-code-card .code-editor {
   min-height: 300px;
   padding: 24px 22px 22px;
   font-size: 12px;
   line-height: 2.08;
 }
-
 .hero-code-card .code-line {
   border-radius: 6px;
   transition: background .35s ease, opacity .35s ease, transform .35s ease;
 }
-
 .hero-code-card .stage-line.is-active {
   background: rgba(173, 255, 74, .055);
   transform: translateX(4px);
 }
-
 .hero-code-card .stage-line.is-active .line-no {
   color: var(--accent);
   opacity: .8;
 }
-
 .hero-code-card .terminal-status i {
   animation: pulseStatus 1.5s ease-in-out infinite;
 }
-
 @keyframes pulseStatus {
-  0%, 100% {
-    opacity: .45;
-  }
-
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
 }
-
-
-/* =========================================================
-   HERO FLOATING CHIPS
-   ========================================================= */
-
 .floating-chip {
   pointer-events: none;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .04em;
   backdrop-filter: blur(12px);
-
-  transition:
-    transform .35s ease,
-    border-color .35s ease,
-    color .35s ease,
-    box-shadow .35s ease;
+  transition: transform .35s ease, border-color .35s ease, color .35s ease, box-shadow .35s ease;
 }
-
-/* REASONING — move slightly DOWN */
-.hero-code-card .chip-a {
-  top: 18%;
-  right: -1%;
-}
-
-/* ACTIONS — move UP */
-.hero-code-card .chip-b {
-  bottom: 24%;
-  left: -2%;
-}
-
-/* Other chips — unchanged */
-.hero-code-card .chip-c {
-  top: 31%;
-  left: -5%;
-}
-
-.hero-code-card .chip-d {
-  bottom: 29%;
-  right: -5%;
-}
-
+.chip-a { top: 12%; right: -1%; }
+.chip-b { bottom: 15%; left: -2%; }
+.chip-c { top: 31%; left: -5%; }
+.chip-d { bottom: 29%; right: -5%; }
 .floating-chip.is-active {
   color: var(--accent);
   border-color: rgba(173, 255, 74, .45);
@@ -1953,74 +1910,27 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   transform: translateY(-2px);
 }
 
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
 @media (max-width: 900px) {
-
-  .hero-code-card {
-    width: min(100%, 560px);
-  }
-
-  .hero-code-card .chip-a {
-    top: 15%;
-    right: 2%;
-  }
-
-  .hero-code-card .chip-b {
-    bottom: 20%;
-    left: 0;
-  }
-
-  .hero-code-card .chip-d {
-    right: 0;
-  }
-
-  .hero-code-card .chip-c {
-    left: 0;
-  }
+  .hero-code-card { width: min(100%, 560px); }
+  .chip-a { right: 2%; }
+  .chip-d { right: 0; }
+  .chip-c { left: 0; }
+  .chip-b { left: 0; }
 }
 
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
 @media (max-width: 700px) {
-
   .hero-code-card .code-editor {
     min-height: 270px;
     padding: 18px 12px;
     font-size: 9.5px;
   }
-
-  .floating-chip {
-    font-size: 8px;
-    padding: 7px 9px;
-  }
-
-  .hero-code-card .chip-a {
-    top: 8%;
-    right: 0;
-  }
-
-  .hero-code-card .chip-c {
-    top: 30%;
-    left: -2px;
-  }
-
-  .hero-code-card .chip-b {
-    bottom: 17%;
-    left: -2px;
-  }
-
-  .hero-code-card .chip-d {
-    bottom: 29%;
-    right: -2px;
-  }
+  .floating-chip { font-size: 8px; padding: 7px 9px; }
+  .chip-a { top: 6%; right: 0; }
+  .chip-c { top: 30%; left: -2px; }
+  .chip-b { bottom: 12%; left: -2px; }
+  .chip-d { bottom: 29%; right: -2px; }
 }
+
 /* --- Final polish: hero, research, education and unified highlights --- */
 .hero h1 {
   font-size: clamp(2.85rem, 4.55vw, 4.45rem);
