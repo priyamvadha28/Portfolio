@@ -1015,15 +1015,40 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   .reveal { opacity: 1; transform: none; }
 }
 
+/* =========================================================
+   PERSONAL PROJECTS — COMPACT CARDS
+   ========================================================= */
+
 .personal-projects .project-card {
-  min-height: 360px;
+  min-height: 315px;
+  padding: 24px;
 }
+
+.personal-projects .project-featured {
+  min-height: 285px;
+}
+
+.personal-projects .project-type {
+  margin-top: 28px;
+}
+
 .personal-projects .project-card h3 {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  line-height: 1.12;
+  margin: 8px 0 12px;
 }
+
 .personal-projects .project-card p {
-  font-size: .98rem;
-  line-height: 1.72;
+  font-size: .92rem;
+  line-height: 1.6;
+}
+
+.personal-projects .project-card .tag-row {
+  padding-top: 18px;
+}
+
+.personal-projects .project-card .text-link {
+  margin-top: 18px;
 }
 
 .writing-bar {
