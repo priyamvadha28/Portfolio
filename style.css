@@ -1891,24 +1891,58 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   0%, 100% { opacity: .45; }
   50% { opacity: 1; }
 }
+/* =========================================================
+   HERO FLOATING CHIPS
+   ========================================================= */
+
 .floating-chip {
   pointer-events: none;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .04em;
   backdrop-filter: blur(12px);
-  transition: transform .35s ease, border-color .35s ease, color .35s ease, box-shadow .35s ease;
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease,
+    color .35s ease,
+    box-shadow .35s ease;
 }
 
-.chip-a { top: 10%; right: -1%; }
-.chip-b { bottom: 12%; left: -2%; }
-.chip-c { top: 31%; left: -5%; }
-.chip-d { bottom: 29%; right: -5%; }
+/* Original positions — C and D remain unchanged */
+.chip-a {
+  top: 10%;
+  right: -1%;
+}
+
+.chip-b {
+  bottom: 12%;
+  left: -2%;
+}
+
+.chip-c {
+  top: 31%;
+  left: -5%;
+}
+
+.chip-d {
+  bottom: 29%;
+  right: -5%;
+}
+
+/* Small vertical adjustments */
+.hero-code-card .chip-a {
+  transform: translateY(6px);
+}
+
+.hero-code-card .chip-b {
+  transform: translateY(-6px);
+}
+
 .floating-chip.is-active {
   color: var(--accent);
   border-color: rgba(173, 255, 74, .45);
   box-shadow: 0 0 22px rgba(173, 255, 74, .12);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
