@@ -1899,8 +1899,9 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   backdrop-filter: blur(12px);
   transition: transform .35s ease, border-color .35s ease, color .35s ease, box-shadow .35s ease;
 }
-.chip-a { top: 12%; right: -1%; }
-.chip-b { bottom: 15%; left: -2%; }
+
+.chip-a { top: 10%; right: -1%; }
+.chip-b { bottom: 12%; left: -2%; }
 .chip-c { top: 31%; left: -5%; }
 .chip-d { bottom: 29%; right: -5%; }
 .floating-chip.is-active {
