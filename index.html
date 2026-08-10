@@ -756,13 +756,52 @@
           I'd love to hear from you.
         </p>
 
-        <form class="contact-form" action="mailto:priyamvadhapradeep@gmail.com" method="post" enctype="text/plain">
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/mrbqqknj"
+          method="POST"
+        >
           <div class="contact-fields">
-            <input type="text" name="name" placeholder="Full Name" aria-label="Full Name" required minlength="2" autocomplete="name">
-            <input type="email" name="email" placeholder="Email Address" aria-label="Email Address" required autocomplete="email">
-            <input type="text" name="subject" placeholder="Email Subject" aria-label="Email Subject" required minlength="3">
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              aria-label="Full Name"
+              required
+              minlength="2"
+              autocomplete="name"
+            >
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              aria-label="Email Address"
+              required
+              autocomplete="email"
+            >
+
+            <input
+              type="text"
+              name="subject"
+              placeholder="Email Subject"
+              aria-label="Email Subject"
+              required
+              minlength="3"
+              autocomplete="off"
+            >
+
           </div>
-          <textarea name="message" placeholder="Your Message" aria-label="Your Message" rows="7" required minlength="10"></textarea>
+
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            aria-label="Your Message"
+            rows="7"
+            required
+            minlength="10"
+          ></textarea>
 
           <button type="submit" class="btn btn-primary contact-submit">
             Send Message <i class='bx bx-right-arrow-alt'></i>
