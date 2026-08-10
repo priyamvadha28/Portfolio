@@ -2575,6 +2575,7 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
 /* =========================================================
    RECOGNITION — CARD GRID
    ========================================================= */
+
 .recognition-section {
   padding-top: 100px;
   padding-bottom: 105px;
@@ -2592,7 +2593,9 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   letter-spacing: -.055em;
 }
 
-.recognition-heading h2 span { color: var(--accent); }
+.recognition-heading h2 span {
+  color: var(--accent);
+}
 
 .recognition-heading p {
   max-width: 760px;
@@ -2612,66 +2615,134 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   position: relative;
   min-height: 378px;
   padding: 28px 26px 25px;
+
   display: flex;
   flex-direction: column;
+
   overflow: hidden;
+
   border: 1px solid rgba(184, 255, 90, .12);
   border-radius: 20px;
+
   background:
-    radial-gradient(circle at 88% 4%, rgba(169, 139, 255, .065), transparent 28%),
-    linear-gradient(145deg, rgba(23, 27, 36, .82), rgba(11, 13, 18, .96));
-  box-shadow: 0 18px 55px rgba(0,0,0,.22);
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    radial-gradient(
+      circle at 88% 4%,
+      rgba(169, 139, 255, .065),
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(23, 27, 36, .82),
+      rgba(11, 13, 18, .96)
+    );
+
+  box-shadow: 0 18px 55px rgba(0, 0, 0, .22);
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
 
+/* Decorative card overlay */
 .recognition-card::after {
   content: "";
   position: absolute;
   inset: 0;
+
   pointer-events: none;
+
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(184,255,90,.035), transparent 32%, rgba(169,139,255,.035));
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(184, 255, 90, .035),
+      transparent 32%,
+      rgba(169, 139, 255, .035)
+    );
 }
 
+/* Card hover */
 .recognition-card:hover {
   transform: translateY(-5px);
-  border-color: color-mix(in srgb, var(--accent) 48%, var(--line));
-  box-shadow: 0 24px 65px rgba(0,0,0,.32), 0 0 28px rgba(184,255,90,.045);
+
+  border-color: color-mix(
+    in srgb,
+    var(--accent) 48%,
+    var(--line)
+  );
+
+  box-shadow:
+    0 24px 65px rgba(0, 0, 0, .32),
+    0 0 28px rgba(184, 255, 90, .045);
 }
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
 
 .recognition-icon {
   position: relative;
   z-index: 1;
+
   width: 62px;
   height: 62px;
   flex: 0 0 62px;
+
   display: grid;
   place-items: center;
+
   margin-bottom: 28px;
+
   border: 1px solid rgba(169, 139, 255, .58);
   border-radius: 50%;
+
   color: var(--accent);
-  background: radial-gradient(circle, rgba(169,139,255,.12), rgba(169,139,255,.025) 65%, transparent 70%);
-  box-shadow: 0 0 22px rgba(169,139,255,.07);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(169, 139, 255, .12),
+      rgba(169, 139, 255, .025) 65%,
+      transparent 70%
+    );
+
+  box-shadow: 0 0 22px rgba(169, 139, 255, .07);
+
   font-size: 1.55rem;
 }
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
 
 .recognition-card h3 {
   position: relative;
   z-index: 1;
+
   margin: 0;
+
   color: var(--text);
+
   font-family: "Space Grotesk", sans-serif;
+
   font-size: clamp(1.28rem, 1.75vw, 1.7rem);
   line-height: 1.14;
+
   letter-spacing: -.035em;
 }
 
 .recognition-award {
   position: relative;
   z-index: 1;
+
   margin-top: 10px;
+
   color: var(--purple);
+
   font-size: .98rem;
   font-weight: 700;
 }
@@ -2679,49 +2750,111 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
 .recognition-card p {
   position: relative;
   z-index: 1;
+
   margin-top: 14px;
+
   color: var(--muted);
+
   font-size: .91rem;
   line-height: 1.65;
 }
 
+
+/* =========================================================
+   CERTIFICATE LINK
+   ========================================================= */
+
 .recognition-certificate {
   position: relative;
-  z-index: 1;
+  z-index: 10;
+
   align-self: flex-start;
+
   display: inline-flex;
   align-items: center;
+
   gap: 10px;
+
   margin-top: auto;
   padding: 10px 18px;
+
   border: 1px solid var(--accent);
   border-radius: 999px;
+
   color: var(--accent);
-  background: rgba(184,255,90,.025);
+  background: rgba(184, 255, 90, .025);
+
   font-size: .78rem;
   font-weight: 700;
-  transition: background .2s ease, color .2s ease, transform .2s ease;
+
+  text-decoration: none;
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
-.recognition-certificate i { font-size: 1rem; }
+.recognition-certificate i {
+  font-size: 1rem;
+  pointer-events: none;
+}
 
-.recognition-card:hover .recognition-certificate {
+/* Certificate hover */
+.recognition-certificate:hover {
   background: var(--accent);
   color: #111;
+
   transform: translateY(-1px);
+
+  box-shadow: 0 6px 18px rgba(184, 255, 90, .12);
 }
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 1000px) {
-  .recognition-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .recognition-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 700px) {
-  .recognition-section { padding-top: 80px; padding-bottom: 85px; }
-  .recognition-heading { margin-bottom: 30px; }
-  .recognition-grid { grid-template-columns: 1fr; gap: 14px; }
-  .recognition-card { min-height: 350px; padding: 25px; }
-}
+  .recognition-section {
+    padding-top: 80px;
+    padding-bottom: 85px;
+  }
 
+  .recognition-heading {
+    margin-bottom: 30px;
+  }
+
+  .recognition-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .recognition-card {
+    min-height: 350px;
+    padding: 25px;
+  }
+
+  .recognition-certificate {
+    padding: 9px 16px;
+    font-size: .76rem;
+  }
+}
 /* =========================================================
    CERTIFICATIONS & LEARNING — CREDENTIAL INDEX
    ========================================================= */
