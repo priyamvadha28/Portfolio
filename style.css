@@ -350,8 +350,8 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
 
 .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .project-card {
-  min-height: 390px;
-  padding: 30px;
+  min-height: 320px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--line);
@@ -360,12 +360,26 @@ h2 span, h1 em { color: var(--accent); font-style: normal; }
   transition: transform .25s ease, border-color .25s ease;
 }
 .project-card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
-.project-featured { grid-column: span 2; min-height: 360px; background: linear-gradient(135deg, var(--surface), var(--accent-soft)); }
+.project-featured {
+  grid-column: span 2;
+  min-height: 300px;
+  background: linear-gradient(135deg, var(--surface), var(--accent-soft));
+}
 .project-top { display: flex; justify-content: space-between; align-items: center; }
 .project-top i { font-size: 1.5rem; color: var(--accent); }
 .project-index { font: 11px "DM Mono"; color: var(--muted); }
-.project-type, .writing-meta { font: 500 10px "DM Mono"; letter-spacing: .13em; color: var(--accent); margin-top: 45px; }
-.project-card h3 { font-size: 2rem; margin: 10px 0 13px; line-height: 1.05; }
+.project-type,
+.writing-meta {
+  font: 500 10px "DM Mono";
+  letter-spacing: .13em;
+  color: var(--accent);
+  margin-top: 28px;
+}
+.project-card h3 {
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
 .project-card p { color: var(--muted); max-width: 760px; }
 .project-card .tag-row { margin-top: auto; padding-top: 25px; }
 .text-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text); font-size: .8rem; font-weight: 600; margin-top: 24px; }
